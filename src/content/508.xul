@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<window
+    id="findfile-window"
+    title="Find Files"
+    orient="vertical"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    onload="init();">
+  <script src="508.js"/>
+  <script src="pa.js"/>
+  <script src="pb.js"/>
+  <script src="pc.js"/>
+  <script src="pd.js"/>
+  <script src="pef.js"/>
+  <script src="pgh.js"/>
+  <script src="pi.js"/>
+  <script src="pj.js"/>
+  <script src="pk.js"/>
+  <script src="pl.js"/>
+  <script src="pm.js"/>
+  <script src="pn.js"/>
+  <script src="po.js"/>
+  <script src="pp.js"/>
+  <groupbox id="urlBox">
+  	<label id="urlLabel" value="No URLs have been verified" crop="end" onclick="dump(document.getElementById('urlLabel').value);"/>
+  	<label id="runTimeLabel" value=" "/>
+  </groupbox>
+  <tabbox flex="1">
+  	<tabs>
+    	<tab label="A" selected="true" id="paTab"/>
+    	<tab label="B" id="pbTab"/>
+    	<tab label="C" id="pcTab"/>
+    	<tab label="D" id="pdTab"/>
+    	<tab label="EF" id="pefTab"/>
+    	<tab label="GH" id="pghTab"/>
+    	<tab label="I" id="piTab"/>
+    	<tab label="J" id="pjTab"/>
+    	<tab label="K" id="pkTab"/>
+    	<tab label="L" id="plTab"/>
+    	<tab label="M" id="pmTab"/>
+    	<tab label="N" id="pnTab"/>
+    	<tab label="O" id="poTab"/>
+    	<tab label="P" id="ppTab"/>
+  	</tabs>
+  	<tabpanels>
+	    <tabpanel id="pa" orient="vertical">
+	    	<groupbox id="paSignal" style="background-color: transparent;"/>
+	    	<tree flex="1" hidecolumnpicker="true" height="400">
+	    		<treecols>
+				    <treecol id="elemsrc" flex="4" label="Value" primary="true"/>
+				    <treecol id="elemalt" flex="2" label="ALT"/>
+				  </treecols>
+				  <treechildren>
+    				<treeitem container="true" open="true">
+      				<treerow>
+        				<treecell label="IMG"/>
+      				</treerow>
+				  		<treechildren id="imgtree">
+				  		</treechildren>
+				  	</treeitem>
+				  	<treeitem container="true" open="false">
+      				<treerow>
+        				<treecell label="INPUT"/>
+      				</treerow>
+				  		<treechildren id="inputtree">
+				  		</treechildren>
+				  	</treeitem>
+				  	<treeitem container="true" open="false">
+      				<treerow>
+        				<treecell label="APPLET"/>
+      				</treerow>
+				  		<treechildren id="applettree">
+				  		</treechildren>
+				  	</treeitem>
+				  </treechildren>
+				</tree>
+				<grid flex="1">
+				  <columns>
+				    <column flex="1"/>
+				    <column flex="1"/>
+				  </columns>
+				  <rows>
+				    <row>
+				      <checkbox id="onlynull" label="Only show errors" checked="true"/>
+				      
+				    </row>
+				    <!--
+				    <row>
+				      <button label="Outline errors" onclick="paOutline();"/>
+				      <button label="Scan" onclick="pa();"/>
+				    </row>
+				    -->
+				    <button label="Outline errors" onclick="paOutline();"/>
+				  </rows>
+				</grid>
+    	</tabpanel>
+  		<tabpanel id="pb" orient="vertical">
+  			<groupbox id="pbSignal" style="background-color: transparent;"/>
+				<groupbox id="pbBox">
+					<caption id="pbCaption" label="Explanation"/>
+    			<textbox id="pbResults" value="" multiline="true" height="200" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  		</tabpanel>
+  		<tabpanel id="pc" orient="vertical">
+  			<groupbox id="pcSignal" style="background-color: transparent;"/>
+	    	<groupbox id="pcBox">
+					<caption id="pcCaption" label="Explanation"/>
+    			<textbox id="pcResults" value="" multiline="true" height="200" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  		</tabpanel>
+  		<tabpanel id="pd" orient="vertical">
+  			<groupbox id="pdSignal" style="background-color: transparent;"/>
+  			<groupbox id="pdBox">
+					<caption id="pdCaption" label="Explanation"/>
+    			<textbox id="pdResults" value="" multiline="true" height="200" readonly="true" style="border: 0px;"/>
+				</groupbox>
+				<button label="Remove stylesheets" onclick="pdRemoveStyleheet();"/>
+  		</tabpanel>
+  		<tabpanel id="pef" orient="vertical">
+  			<groupbox id="pefSignal" style="background-color: transparent;"/>
+  			<groupbox id="pefBox">
+					<caption id="pefCaption" label="Results"/>
+    			<textbox id="pefResults" value="" multiline="true" height="200" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  		</tabpanel>
+  		<tabpanel id="pgh" orient="vertical">
+  			<groupbox id="pghSignal" style="background-color: transparent;"/>
+  			<groupbox id="pghBox">
+    			<caption id="pghCaption" label="Explanation"/>
+    			<textbox id="pghResults" value="" multiline="true" height="150" readonly="true" style="border: 0px;"/>
+				</groupbox>
+	    	<button label="Outline tables" onclick="pghOutlineTable();"/>
+  			<button label="Outline table headers" onclick="pghOutlineTH();"/>
+  			<button label="Outline TDs with headers" onclick="pghOutlineTD();"/>
+  		</tabpanel>
+  		<tabpanel id="pi" orient="vertical">
+  			<groupbox id="piSignal" style="background-color: transparent;"/>
+  			<groupbox id="piBox">
+					<caption id="piCaption" label="Results"/>
+    			<textbox id="piResults" value="" multiline="true" height="200" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  		</tabpanel>
+  		<tabpanel id="pj" orient="vertical">
+  			<groupbox id="pjSignal" style="background-color: transparent;"/>
+	    	<groupbox id="pjBox">
+    			<caption id="pjCaption" label="Results"/>
+    			<textbox id="pjResults" value="" multiline="true" height="150" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  			<!--<button label="Scan" onclick="pj();"/>-->
+  		</tabpanel>
+  		<tabpanel id="pk" orient="vertical">
+  			<groupbox id="pkSignal" style="background-color: transparent;"/>
+  			<groupbox id="pkBox">
+					<caption id="pkCaption" label="Explanation"/>
+    			<textbox id="pkResults" value="" multiline="true" height="200" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  		</tabpanel>
+  		<tabpanel id="pl" orient="vertical">
+  			<groupbox id="plSignal" style="background-color: transparent;"/>
+	    	<groupbox id="plBox">
+    			<caption id="plCaption" label="Results"/>
+    			<textbox id="plResults" value="" multiline="true" height="150" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  			<!--<button label="Scan" onclick="pl();"/>-->
+  		</tabpanel>
+  		<tabpanel id="pm" orient="vertical">
+  			<groupbox id="pmSignal" style="background-color: transparent;"/>
+	    	<groupbox id="pmBox">
+    			<caption id="pmCaption" label="Results"/>
+    			<textbox id="pmResults" value="" multiline="true" height="150" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  			<!--<button label="Scan" onclick="pm();"/>-->
+  		</tabpanel>
+  		<tabpanel id="pn" orient="vertical">
+  			<groupbox id="pnSignal" style="background-color: transparent;"/>
+	    	<tree flex="1" hidecolumnpicker="true" height="400">
+	    		<treecols>
+				    <treecol id="elemType" flex="4" label="Type" primary="true"/>
+				    <treecol id="elemName" flex="4" label="Name"/>
+				  </treecols>
+				  <treechildren>
+    				<treeitem container="true" open="true">
+      				<treerow>
+        				<treecell label="INPUT"/>
+      				</treerow>
+				  		<treechildren id="pnInputTree">
+				  		</treechildren>
+				  	</treeitem>
+				  	<treeitem container="true" open="true">
+      				<treerow>
+        				<treecell label="SELECT"/>
+      				</treerow>
+				  		<treechildren id="pnSelectTree">
+				  		</treechildren>
+				  	</treeitem>
+				  </treechildren>
+				</tree>
+				<grid flex="1">
+				  <columns>
+				    <column flex="1"/>
+				    <column flex="1"/>
+				  </columns>
+				  <rows>
+				    <row>
+				    	<checkbox label="Highlight errors" checked="false" disabled="true"/>
+				      <checkbox label="Only show errors" checked="true" disabled="true"/>
+				    </row>
+				    <!--
+				    <row>
+				    	<button label="Outline labels " onclick="pnOutlineLabels();"/>
+				      <button label="Scan" onclick="pn();"/>
+				    </row>
+				    -->
+				    <button label="Outline labels " onclick="pnOutlineLabels();"/>
+				  </rows>
+				</grid>
+  		</tabpanel>
+  		<tabpanel id="po" orient="vertical">
+  			<groupbox id="poSignal" style="background-color: transparent;"/>
+  			<groupbox id="poBox">
+					<caption id="poCaption" label="Explanation"/>
+    			<textbox id="poResults" value="" multiline="true" height="200" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  		</tabpanel>
+  		<tabpanel id="pp" orient="vertical">
+  			<groupbox id="ppSignal" style="background-color: transparent;"/>
+  			<groupbox id="ppBox">
+					<caption id="ppCaption" label="Explanation"/>
+    			<textbox id="ppResults" value="" multiline="true" height="200" readonly="true" style="border: 0px;"/>
+				</groupbox>
+  		</tabpanel>
+  	</tabpanels>
+	</tabbox>
+	<!--<button label="Run all tests" onclick="run508();"/>-->
+</window>

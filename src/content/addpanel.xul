@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+<window
+ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+ title="SIDEBAR INSTALLER"
+ orient="vertical">
+ <script src="installer.js" />
+<script>
+var
+Installer = new MOZ_SidebarInstaller('Section 508', 'chrome://508/content/508.xul', '');  //no customization
+ </script>
+
+<groupbox
+ style="-moz-box-align: center; -moz-box-pack: center;">
+ <caption
+  label="Section 508 Sidebar" />
+ <description>Click the button to install Your Application Name Sidebar panel</description>
+ <button
+  label="INSTALL Section 508 PANEL"
+  onclick="Installer.setUp()"
+  flex="0"/>
+ </groupbox>
+</window>
